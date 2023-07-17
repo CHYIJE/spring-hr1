@@ -2,7 +2,7 @@ spring:
   thymeleaf:
     cache: false
   datasource:
-    url: jdbc:mariadb://mariadb_con:3306/hr
+    url: jdbc:mariadb://localhost:3306/hr
     driverClassName: org.mariadb.jdbc.Driver
     username: root
     password: 1234

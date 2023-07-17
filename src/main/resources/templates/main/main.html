@@ -20,18 +20,11 @@
     </div>
     <div>
         <ul>
-            <li>
-                <span>1. 유럽</span>
+            <li th:each="dto :${resMainDTOList}">
+                <span th:text="${dto.regionsName}"></span>
                 <span class="x-button">X</span>
             </li>
-            <li>
-                <span>2. 아시아</span>
-                <span class="x-button">X</span>
-            </li>
-            <li>
-                <span>3. 아메리카</span>
-                <span class="x-button">X</span>
-            </li>
+            
         </ul>
     </div>
 </body>
