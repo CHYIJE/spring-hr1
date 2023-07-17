@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .x-mark {
-            
+        .x-button {
+            background-color: whitesmoke;
+            color: red;
+            font-weight: 600;
+            cursor: pointer;
         }
-        
     </style>
     <title>Document</title>
 </head>
@@ -17,16 +19,20 @@
         <button>추가</button>
     </div>
     <div>
-        <li>
-            <span>1.유럽 X</span>
-        </li>
-        <li>
-            <span>2.아시아 X</span>
-        </li>
-        <li>
-            <span>3.아메리카 X</span>
-        </li>
+        <ul>
+            <li>
+                <span>1. 유럽</span>
+                <span class="x-button">X</span>
+            </li>
+            <li>
+                <span>2. 아시아</span>
+                <span class="x-button">X</span>
+            </li>
+            <li>
+                <span>3. 아메리카</span>
+                <span class="x-button">X</span>
+            </li>
+        </ul>
     </div>
-    
 </body>
 </html>
