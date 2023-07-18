@@ -21,7 +21,7 @@
 <body>
     <h1>직원 리스트</h1>
     <div>
-        <div class="card" th:each="dto : ${empTableDTOList}">
+        <div class="card" th:onclick="goDetail([[${dto.employeeId}]])" th:each="dto : ${empTableDTOList}">
             <div>
                 <span>직원번호:</span>
                 <span th:text="${dto.employeeId}"></span>
@@ -32,5 +32,12 @@
             </div>
         </div>
     </div>
+    <script>
+        //페이지 이동
+        const goDetail = (employeeId) => {
+            location.href = "/emp/" + employeeId;
+        }
+    
+    </script>
 </body>
 </html>
