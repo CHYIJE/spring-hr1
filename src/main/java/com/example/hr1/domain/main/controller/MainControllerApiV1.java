@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hr1.common.dto.ResponseDTO;
+import com.example.hr1.domain.main.dto.ReqInsertMainDTO;
 import com.example.hr1.domain.main.dto.ResMainDTO;
 import com.example.hr1.domain.main.service.MainService;
 
@@ -23,11 +27,16 @@ public class MainControllerApiV1 {
         return mainService.getMainPageData();
 
     }
+    
+    @PostMapping("/api/v1/main")
+    public ResponseDTO<Object> postMainData(@RequestBody ReqInsertMainDTO reqInsertMainDTO){
+        System.out.println(reqInsertMainDTO);
+        mainService.postMainData(reqInsertMainDTO);
 
-    @GetMapping("/api/v2/main")
-    public List<ResMainDTO> getMainData2(){
-        return mainService.getMainPageData();
-
+        return ResponseDTO.builder()
+                .code(0)
+                .message("region 등록에 성공했습니다.")
+                .build();
     }
 }
     
