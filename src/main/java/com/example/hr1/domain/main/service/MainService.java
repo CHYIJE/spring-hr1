@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.hr1.domain.main.dto.ReqInsertMainDTO;
+import com.example.hr1.domain.main.dto.ReqUpdateMainDTO;
 import com.example.hr1.domain.main.dto.ResMainDTO;
 import com.example.hr1.domain.main.dto.ResUpdateMainDTO;
 import com.example.hr1.model.regions.entity.RegionsEntity;
@@ -29,17 +30,21 @@ public class MainService {
 
     // 매개변수 수정
     @Transactional
-    public void updateMainData(Object obj){
+    public void updateMainData(Integer regionId, ReqUpdateMainDTO reqUpdateMainDTO){
 
         // regionId 받아서 넣어주기
-        RegionsEntity regionsEntity = regionsRepository.findByRegionId(5);
+        RegionsEntity regionsEntity = regionsRepository.findByRegionId(regionId);
+
+        if(regionsEntity == null) {
+            throw new RuntimeException("잘못된 요청입니다.");
+        }
     
         // spring data jpa는 더티체킹을 사용한다
         // 데이터베이스에서 가져온 데이터(엔티티)가 변경이 되면
         // 자동으로 update쿼리를 날린다
 
-        // dto에서바뀐 역 이름 받아서 넣어주기
-        regionsEntity.setRegionName("바뀐 지역이름");
+        // dto에서 바뀐 지역 이름 받아서 넣어주기
+        regionsEntity.setRegionName(reqUpdateMainDTO.getRegionName());
     }
 
     
