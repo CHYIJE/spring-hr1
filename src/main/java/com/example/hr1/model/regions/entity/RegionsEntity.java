@@ -30,6 +30,10 @@ public class RegionsEntity {
     @Column(name = "region_name")
     private String regionName;
 
+    public void setRegionName(String regionName){
+        this.regionName = regionName;
+    }
+
     @Override
     public String toString(){
         return "RegionEntity [regionId = " + regionId + ", regionName = " + regionName + "]";
