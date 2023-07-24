@@ -11,6 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.hr1.domain.main.dto.ResMainDTO;
 import com.example.hr1.domain.main.dto.ResUpdateMainDTO;
 import com.example.hr1.domain.main.service.MainService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -23,7 +28,12 @@ public class MainController {
     @GetMapping("/")
     // Mapping을 기반으로 함수를 실행 시키기 때문에
     // Controller의 함수 이름은 중요하지 않다.
-    public ModelAndView mainPage(){
+    public ModelAndView mainPage(HttpServletRequest request, HttpServletResponse response){
+
+        HttpSession session = request.getSession();
+
+        session.setAttribute("name", "hong");
+
         ModelAndView modelAndView = new ModelAndView();
         List<ResMainDTO> resMainDTOList = mainService.getMainPageData();
         // modelAndView.addObject("region", region());
@@ -34,7 +44,12 @@ public class MainController {
     }
 
     @GetMapping("/main/update-page/{regionsId}")
-    public ModelAndView updatePage(@PathVariable Integer regionsId){
+    public ModelAndView updatePage(@PathVariable Integer regionsId, HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+
+        System.out.println(session.getAttribute("name"));
+
         ModelAndView modelAndView = new ModelAndView();
         ResUpdateMainDTO resUpdateMainDTO = mainService.getUpdateMainPageDate(regionsId);
         modelAndView.addObject("resUpdateMainDTO", resUpdateMainDTO);
