@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,18 +23,19 @@ import com.example.hr1.domain.main.service.MainService;
 
 
 @RestController
+@RequestMapping("/api/v1/main")  //공통된 이름 묶기
 public class MainControllerApiV1 {
 
     @Autowired
     private MainService mainService;
     
-    @GetMapping("/api/v1/main")
+    @GetMapping // 묶임
     public List<ResMainDTO> getMainData(){
         return mainService.getMainPageData();
 
     }
     
-    @PostMapping("/api/v1/main")
+    @PostMapping // 묶임
     public ResponseDTO<Object> postMainData(@RequestBody ReqInsertMainDTO reqInsertMainDTO){
         System.out.println(reqInsertMainDTO);
         mainService.postMainData(reqInsertMainDTO);
@@ -43,7 +46,7 @@ public class MainControllerApiV1 {
                 .build();
     }
 
-    @DeleteMapping("/api/v1/main/{regionId}")
+    @DeleteMapping("/{regionId}")  //id앞 묶임
     public ResponseDTO<Object> deleteMainData(@PathVariable Integer regionId){
 
         // System.out.println("regionId : " + regionId);
@@ -56,7 +59,7 @@ public class MainControllerApiV1 {
 
     }
 
-    @PutMapping("/api/v1/main/{regionId}")
+    @PutMapping("/{regionId}")  //id앞 묶임
     public ResponseDTO<Object> updateMainData(
         @PathVariable Integer regionId, 
         @RequestBody ReqUpdateMainDTO reqUpdateMainDTO
